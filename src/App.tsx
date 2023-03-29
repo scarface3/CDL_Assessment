@@ -1,24 +1,32 @@
+import CheckoutForm from './CheckoutForm';
+import { PricingRules } from './Checkout';
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+
+const pricingRules: PricingRules = {
+  A: {
+    unitPrice: 50,
+    specialPrice: {
+      quantity: 3,
+      price: 130,
+    },
+  },
+  B: {
+    unitPrice: 30,
+    specialPrice: {
+      quantity: 2,
+      price: 45,
+    },
+  },
+  C: {
+    unitPrice: 20,
+  },
+};
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Checkout</h1>
+      <CheckoutForm pricingRules={pricingRules} />
     </div>
   );
 }
