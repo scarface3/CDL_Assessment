@@ -35,10 +35,13 @@ const CheckoutForm = ({ pricingRules }: CheckoutFormProps) => {
   };
 
   return (
+    <div className=' container'>
+           <div className='title'>Checkout</div>
     <div className="checkout-form">
+ 
       <form onSubmit={handleScanItem}>
         <label>
-          Item:
+        <div className='item'>  Item: </div>
           <input
             type="text"
             value={itemToAdd}
@@ -71,6 +74,7 @@ const CheckoutForm = ({ pricingRules }: CheckoutFormProps) => {
             checkout.getTotal(cart))}</h3>
         </div>
       </div>
+    </div>
     </div>
   );
 };

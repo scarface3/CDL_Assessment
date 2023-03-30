@@ -24,10 +24,10 @@ const pricingRules: PricingRules = {
 
 function App() {
   return (
-    <div className="App">
-      <h1>Checkout</h1>
+
+
       <CheckoutForm pricingRules={pricingRules} />
-    </div>
+
   );
 }
 
