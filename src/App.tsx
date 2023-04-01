@@ -1,6 +1,9 @@
-import CheckoutForm from './CheckoutForm';
-import { PricingRules } from './Checkout';
+import { Route, Routes } from 'react-router-dom';
+
+import CheckoutForm from './pages/CheckoutForm';
+import { PricingRules } from './components/Checkout';
 import React from 'react';
+import SuccessPage from './pages/SuccessPage';
 
 const pricingRules: PricingRules = {
   A: {
@@ -20,15 +23,25 @@ const pricingRules: PricingRules = {
   C: {
     unitPrice: 20,
   },
+
+  D: {
+    unitPrice: 15,
+  },
 };
+
+
 
 function App() {
   return (
+<Routes>
+<Route path="/" element={      <CheckoutForm pricingRules={pricingRules} />} />
+<Route path="success" element={      <SuccessPage />} />
+</Routes>
 
 
-      <CheckoutForm pricingRules={pricingRules} />
 
   );
 }
 
 export default App;
+

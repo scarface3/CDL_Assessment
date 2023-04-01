@@ -35,7 +35,19 @@ export class Checkout {
 
     return cart;
   }
+  getPrice(item: string, quantity: number): number {
+    const { unitPrice, specialPrice } = this.pricingRules[item];
 
+    if (specialPrice) {
+      const specialPriceQuantity = Math.floor(quantity / specialPrice.quantity);
+      const specialPriceTotal =
+        specialPriceQuantity * specialPrice.price +
+        (quantity % specialPrice.quantity) * unitPrice;
+      return specialPriceTotal;
+    } else {
+      return quantity * unitPrice;
+    }
+  }
   getTotal(cart: CartItem[]): number {
     let total = 0;
 
@@ -58,4 +70,21 @@ export class Checkout {
 
     return total;
   }
+//   removeItem(item: string, cart: CartItem[]): CartItem[] {
+//   const itemIndex = cart.findIndex((cartItem) => cartItem.item === item);
+
+//   if (itemIndex !== -1) {
+//     const itemQuantity = cart[itemIndex].quantity;
+//     cart.splice(itemIndex, 1);
+
+
+//     if (itemQuantity > 1) {
+//       cart.push({ item, quantity: itemQuantity - 1 });
+//     }
+//   }
+
+//   return cart;
+// }
 }
+
+
