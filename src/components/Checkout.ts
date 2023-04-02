@@ -70,21 +70,6 @@ export class Checkout {
 
     return total;
   }
-//   removeItem(item: string, cart: CartItem[]): CartItem[] {
-//   const itemIndex = cart.findIndex((cartItem) => cartItem.item === item);
-
-//   if (itemIndex !== -1) {
-//     const itemQuantity = cart[itemIndex].quantity;
-//     cart.splice(itemIndex, 1);
-
-
-//     if (itemQuantity > 1) {
-//       cart.push({ item, quantity: itemQuantity - 1 });
-//     }
-//   }
-
-//   return cart;
-// }
 }
 
 

@@ -5,6 +5,8 @@ import React, { useState } from 'react';
 
 import {ReactComponent as Cancel} from "../svg/inactiveTrash.svg";
 import { Link } from 'react-router-dom';
+import {ReactComponent as Minus} from "../svg/minus.svg";
+import {ReactComponent as Plus} from "../svg/plus.svg";
 
 type CheckoutFormProps = {
   pricingRules: PricingRules;
@@ -24,6 +26,25 @@ const CheckoutForm = ({ pricingRules }: CheckoutFormProps) => {
     } catch (error: any) {
       alert(error.message);
     }
+};
+
+
+
+const handleItemQuantityChange = (
+  item: CartItem,
+  newQuantity: number
+) => {
+  const updatedCart = [...cart];
+  const itemIndex = updatedCart.findIndex(
+    (cartItem) => cartItem.item === item.item
+  );
+  if (itemIndex >= 0) {
+    updatedCart[itemIndex].quantity = newQuantity;
+    setCart(updatedCart);
+    if (newQuantity === 0){
+      handleRemoveFromCart(item)
+    }
+  }
 };
 
 
@@ -84,7 +105,27 @@ const CheckoutForm = ({ pricingRules }: CheckoutFormProps) => {
            {cart.map((cartItem) => (
            <tr key={cartItem.item}>
               <td>{cartItem.item}</td>
-               <td>{cartItem.quantity}</td>
+              <td className='data'>
+                      <Minus className='plus'
+                        onClick={() =>
+                          handleItemQuantityChange(
+                            cartItem,
+                            cartItem.quantity - 1
+                          )
+                        }
+                      />
+
+                      {cartItem.quantity}
+                      <Plus className='plus'
+                        onClick={() =>
+                          handleItemQuantityChange(
+                            cartItem,
+                            cartItem.quantity + 1
+                          )
+                        }
+                      />
+
+                    </td>
                <td>£{(
             checkout.getPrice(cartItem.item,cartItem.quantity))}</td>
                            <td>    <div className='cancel' onClick={() => {
@@ -99,7 +140,7 @@ handleRemoveFromCart(cartItem);
         <div className="total">
 { cart.length > 0 &&         <div className='TotalSection'>
           <button className='button2' onClick={handleClearCart}>Clear Cart</button>
-        <Link to= "success">  <button > Proceed to Checkout</button> </Link>
+        <Link to= "success">  <button > Proceed to Payment</button> </Link>
 
           </div>}
 
