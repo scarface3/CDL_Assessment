@@ -154,5 +154,4 @@ handleRemoveFromCart(cartItem);
     </div>
   );
 };
-
 export default CheckoutForm;
